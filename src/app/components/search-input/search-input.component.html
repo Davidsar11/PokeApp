@@ -1,0 +1,66 @@
+<div class="text-center mt-3">
+  <img
+    style="max-width: 23rem"
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/800px-International_Pok%C3%A9mon_logo.svg.png"
+  />
+</div>
+
+<hr />
+<section class="input-group mb-3 mt-3 d-flex">
+  @for (item of botones; track $index; let i = $index) {
+  <!-- f       -->
+
+  @if(item === 'Shiny'){
+  <button
+  [class.btn-warning]="inputShiny()"
+    [class.btn-outline-warning]="!inputShiny()"
+    class="btn  rounded-pill px-3 ms-md-2"
+    (click)="isShiny.emit(!inputShiny())"
+  >
+    {{ item   |titlecase}}
+  </button>
+  }
+  <!--  -->
+  @else if (item === 'Legendary') {
+
+
+  <button
+  [class.btn-warning]="inputLegendary()"
+    [class.btn-outline-warning]="!inputLegendary()"
+    class="btn  rounded-pill px-3 ms-md-5"
+    (click)="isLegendary.emit(!inputLegendary())"
+  >
+    {{ item |titlecase }}
+  </button>
+
+
+  }
+  <!--  -->
+
+  @else{
+  <button
+    [class.btn-warning]="item === inputQuery()"
+    [class.btn-outline-warning]="item != inputQuery()"
+    class="btn rounded-pill px-3 ms-md-2"
+    (click)="emitir.emit(item)"
+  >
+    {{ item  |titlecase }}
+  </button>
+  } }
+
+  <input
+    type="text"
+    class="form-control ms-auto rounded-left"
+    style="max-width: fit-content; border-radius: 10px"
+    placeholder="{{ placeholder() }}"
+    #txtSearch
+    (keyup)="emitir.emit(txtSearch.value)"
+  />
+
+  <button
+    class="btn btn-pill btn-warning me-3"
+    (click)="emitir.emit(txtSearch.value)"
+  >
+    Buscar
+  </button>
+</section>

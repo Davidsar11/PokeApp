@@ -1,0 +1,24 @@
+
+
+
+<app-search-input
+[inputQuery]="ultimaQuery()"
+(emitir)="query.set($event)"
+(isShiny)="isShiny.set($event)"
+(isLegendary)="isLegendary.set($event)"
+[inputShiny]="isShiny()"
+[inputLegendary]="isLegendary()"
+placeholder="Introduce el nombre"
+/>
+<hr>
+
+<pokemon-list
+[pokemons]="pokemonResource.value()??[]"
+[errorMessage]="pokemonResource.error()"
+[isLoading]="pokemonResource.isLoading()"
+[isShiny]="isShiny()"
+[isEmpty]="pokemonResource.value()?.length === 0"
+[isLegendary]="isLegendary()"
+/>
+
+

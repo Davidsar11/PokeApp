@@ -1,0 +1,99 @@
+
+<style>
+
+.card-flip > div {
+  backface-visibility: hidden;
+  transition: transform 300ms;
+  transition-timing-function: linear;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  /* display: flex; */
+}
+
+.card-front {
+  transform: rotateY(0deg);
+
+
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  position: absolute;
+  top: 0;
+}
+
+.card-flip:hover .card-front {
+  transform: rotateY(-180deg);
+}
+
+.card-flip:hover .card-back {
+  transform: rotateY(0deg);
+}
+
+
+</style>
+
+
+
+
+
+<div style="border-color:{{color.get(pokemon().types[0]) }}" class="card card-flip mb-3 ms-3 mt-1" style="max-width: 18rem; border-width: 3px; border-radius: 10px; ">
+
+  <div class="card-front " style="max-width: 18rem; ">
+
+    @if(isShiny()){
+      <img class="card-img-top" style="border-top-left-radius: 10px; border-top-right-radius: 10px;" [src]= "pokemon().shiny" alt="">
+    }@else {
+      <img class="card-img-top" style="border-top-left-radius: 10px; border-top-right-radius: 10px;" [src]= "pokemon().artWork" alt="">
+    }
+
+    <div class="card-body text-center ">
+        <h5 class="card-title ">{{pokemon().name | titlecase}}</h5>
+    </div>
+
+
+
+      <ul class=" list-group list-group-flush text-center" style="border-radius: 10px;">
+
+        <li class="list-group-item card-text">
+        @for (item of pokemon().types; track $index; let i = $index) {
+          <span class="badge  me-1" style="background-color:{{color.get(item)}};"> {{item | titlecase}}</span>
+        }
+        </li>
+
+
+
+        <li class="list-group-item">Weight: {{pokemon().weight}}</li>
+        <li class="list-group-item">Height: {{pokemon().height}}</li>
+
+      </ul>
+
+  </div>
+
+<div class="card-back " style="max-width: 18rem;">
+
+
+    <div class="card-body text-center">
+      <h5 class="card-title ">{{pokemon().name | titlecase}}</h5>
+  </div>
+
+
+  <ul class=" list-group list-group-flush text-center" style="border-radius: 10px;">
+
+
+
+    <li class="list-group-item">HP: {{pokemon().HP}}</li>
+    <li class="list-group-item">Attack: {{pokemon().Attack}}</li>
+    <li class="list-group-item">SpecialAttack: {{pokemon().SpecialAttack}}</li>
+    <li class="list-group-item">Defense: {{pokemon().Defense}}</li>
+    <li class="list-group-item">SpecialDefense: {{pokemon().SpecialDefense}}</li>
+    <li class="list-group-item">Speed: {{pokemon().Speed}}</li>
+
+  </ul>
+
+</div>
+
+
+
+</div>
